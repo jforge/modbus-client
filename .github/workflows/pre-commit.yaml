@@ -3,8 +3,7 @@ on:
   pull_request:
   push:
     branches:
-      - master
       - main
 jobs:
   pre-commit:
-    uses: cybcon/github_workflows/.github/workflows/pre-commit.yaml@v1.4.0
+    uses: cybcon/github_workflows/.github/workflows/pre-commit.yaml@v2.1.0

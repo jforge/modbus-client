@@ -1,23 +1,24 @@
-# -*- coding: utf-8 -*-
 """
-###############################################################################
-# Modbus TCP client script for debugging
-# Author: Michael Oberdorf IT-Consulting
-# Datum: 2020-05-20
-# Last modified by: Michael Oberdorf
-# Last modified at: 2025-12-28
-###############################################################################
+Modbus TCP client script for debugging
+Author: Michael Oberdorf IT-Consulting
+Datum: 2020-05-20
+Last modified by: Michael Oberdorf
+Last modified at: 2026-07-06
 """
+
 import argparse
 import logging
 import sys
 
 import pandas as pd
-from pymodbus.client.sync import ModbusTcpClient as ModbusClient
+from pymodbus.client import ModbusTcpClient as ModbusClient
 
 import FloatToHex
 
-VERSION = "1.0.17"
+__status__ = "production"
+__date__ = "2026-07-06"
+__version_info__ = ("1", "1", "0")
+__version__ = ".".join(__version_info__)
 DEBUG = False
 """
 ###############################################################################
@@ -107,7 +108,7 @@ log = logging.getLogger()
 log.setLevel(logging.INFO)
 
 # Parsing command line arguments
-parser = argparse.ArgumentParser(description="Modbus TCP Client v" + VERSION)
+parser = argparse.ArgumentParser(description="Modbus TCP Client v" + __version__)
 group = parser.add_argument_group()
 group.add_argument(
     "-s", "--slave", help="Hostname or IP address of the Modbus TCP slave (default: 127.0.0.1)", default="127.0.0.1"
@@ -181,7 +182,7 @@ elif args.registerType == 4:
 
 # start the master and connect to slave
 if DEBUG:
-    print("Starting Modbus TCP master client, v" + str(VERSION))
+    print(f"Starting Modbus TCP master client, v{__version__}")
     print("Trying to connect to slave: " + str(args.slave) + ":" + str(args.port))
     print(
         "Query with slave id: "
@@ -210,13 +211,13 @@ if not result:
 
 # read the registers, dependent on the requested type
 if args.registerType == 1:
-    rr = client.read_coils(args.register, args.length, unit=args.slaveid)
+    rr = client.read_coils(address=args.register, count=args.length, device_id=args.slaveid)
 elif args.registerType == 2:
-    rr = client.read_discrete_inputs(args.register, args.length, unit=args.slaveid)
+    rr = client.read_discrete_inputs(address=args.register, count=args.length, device_id=args.slaveid)
 elif args.registerType == 3:
-    rr = client.read_holding_registers(args.register, args.length, unit=args.slaveid)
+    rr = client.read_holding_registers(address=args.register, count=args.length, device_id=args.slaveid)
 elif args.registerType == 4:
-    rr = client.read_input_registers(args.register, args.length, unit=args.slaveid)
+    rr = client.read_input_registers(address=args.register, count=args.length, device_id=args.slaveid)
 if rr.isError():
     log.error("Error while querying Modbus TCP slave!")
     client.close()

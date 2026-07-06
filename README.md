@@ -15,16 +15,15 @@ Container Registry: [DockerHub](https://hub.docker.com/r/oitc/modbus-client)
 [![][github-forks-shield]][github-forks-link]
 [![][github-issues-shield]][github-issues-link]
 [![][github-license-shield]][github-license-link]
-
 [![][docker-release-shield]][docker-release-link]
 [![][docker-pulls-shield]][docker-pulls-link]
 [![][docker-stars-shield]][docker-stars-link]
 [![][docker-size-shield]][docker-size-link]
 
+## Supported tags and respective `Dockerfile` links
 
-# Supported tags and respective `Dockerfile` links
-
-* [`latest`, `1.0.17`](https://github.com/cybcon/modbus-client/blob/v1.0.17/Dockerfile)
+* [`latest`, `1.1.0`](https://github.com/cybcon/modbus-client/blob/v1.1.0/Dockerfile)
+* [`1.0.17`](https://github.com/cybcon/modbus-client/blob/v1.0.17/Dockerfile)
 * [`1.0.16`](https://github.com/cybcon/modbus-client/blob/v1.0.16/Dockerfile)
 * [`1.0.15`](https://github.com/cybcon/modbus-client/blob/v1.0.15/Dockerfile)
 * [`1.0.14`](https://github.com/cybcon/modbus-client/blob/v1.0.14/Dockerfile)
@@ -32,25 +31,23 @@ Container Registry: [DockerHub](https://hub.docker.com/r/oitc/modbus-client)
 * [`1.0.12`](https://github.com/cybcon/modbus-client/blob/v1.0.12/Dockerfile)
 * [`1.0.11`](https://github.com/cybcon/modbus-client/blob/v1.0.11/Dockerfile)
 
-
-# What is Modbus TCP Client?
+## What is Modbus TCP Client?
 
 The Modbus TCP Client is a command line tool, written in python to read and interpret Modbus registers.
 
 The Modbus specification can be found here: [PDF](https://modbus.org/docs/Modbus_Application_Protocol_V1_1b3.pdf)
 
-
-# QuickStart with Modbus TCP Client and Docker
+## QuickStart with Modbus TCP Client and Docker
 
 Step - 1 : Pull the Modbus TCP Client
 
-```
+```bash
 docker pull oitc/modbus-client
 ```
 
 Step - 2 : Run the Modbus TCP Client to scan your Modbus Server Registers
 
-```
+```bash
 docker run --rm oitc/modbus-client:latest [options]
 
 usage: modbus_client.py [-h] [-s SLAVE] [-p PORT] [-i SLAVEID]
@@ -83,10 +80,11 @@ optional arguments:
   -d, --debug           Enable debug output
 ```
 
-# Examples
-## Read Analog Input Register
+## Examples
 
-```
+### Read Analog Input Register
+
+```bash
 docker run --rm oitc/modbus-client:latest -s 192.168.58.70 -p 1503 -t 4 -r 0 -l 10
            HEX16  UINT16  INT16               BIT       HEX32    FLOAT32
 register
@@ -102,9 +100,9 @@ register
 30009     0x0032      50     50  0000000000110010  0x00320074   0.000000
 ```
 
-## Discrete Discrete Input Contacts
+### Discrete Discrete Input Contacts
 
-```
+```bash
 docker run --rm test:latest -s 192.168.57.10 -p 5020 -t 2 -r 0 -l 3
           BIT   BOOL
 register
@@ -113,15 +111,15 @@ register
 10002       1   True
 ```
 
-# Donate
+## Donate
+
 I would appreciate a small donation to support the further development of my open source projects.
 
-<a href="https://www.paypal.com/donate/?hosted_button_id=BHGJGGUS6RH44" target="_blank"><img src="https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png" alt="Donate with PayPal" width="200px"></a>
+[![Donate with PayPal][donate-paypal-button]][donate-paypal-link]
 
+## License
 
-# License
-
-Copyright (c) 2020-2024 Michael Oberdorf IT-Consulting
+Copyright (c) 2020-2026 Michael Oberdorf IT-Consulting
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -150,6 +148,8 @@ SOFTWARE.
 [docker-size-shield]: https://img.shields.io/docker/image-size/oitc/modbus-client?color=369eff&labelColor=black&style=flat-square
 [docker-stars-link]: https://hub.docker.com/r/oitc/modbus-client
 [docker-stars-shield]: https://img.shields.io/docker/stars/oitc/modbus-client?color=45cc11&labelColor=black&style=flat-square
+[donate-paypal-button]: https://raw.githubusercontent.com/cybcon/paypal-donate-button/refs/heads/master/paypal-donate-button_200x77.png
+[donate-paypal-link]: https://www.paypal.com/donate/?hosted_button_id=BHGJGGUS6RH44
 [github-action-release-link]: https://github.com/cybcon/modbus-client/actions/workflows/release-from-label.yaml
 [github-action-release-shield]: https://img.shields.io/github/actions/workflow/status/cybcon/modbus-client/release-from-label.yaml?label=release&labelColor=black&logo=githubactions&logoColor=white&style=flat-square
 [github-action-test-link]: https://github.com/cybcon/modbus-client/actions/workflows/container-image-build-validation.yaml

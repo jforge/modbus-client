@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-
 # setup.py sdist      to create a package which can be uploaded to PyPi registry (but need more information)
 # setup.py install    to install the package - needs C compiler (vcvarsall.bat on windows)
 
 
-from distutils.core import Extension, setup
+# from distutils.core import Extension, setup # migrate to python 3.14
+from setuptools import Extension, setup
 
 FloatToHexModule = Extension("FloatToHex", sources=["floattohexmodule.c"])
 
