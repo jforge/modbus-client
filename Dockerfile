@@ -27,7 +27,7 @@ RUN pip3 install --no-cache-dir -r /FloatToHex/requirements.txt --break-system-p
 # Building the docker image with already compiled modules
 FROM base
 LABEL maintainer="Michael Oberdorf IT-Consulting <info@oberdorf-itc.de>"
-LABEL site.local.program.version="1.0.17"
+LABEL site.local.program.version="1.1.0"
 
 COPY --from=builder /usr/lib/python3.14/site-packages /usr/lib/python3.14/site-packages
 
